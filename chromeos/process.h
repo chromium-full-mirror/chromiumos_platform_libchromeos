@@ -15,6 +15,7 @@
 #include <base/callback.h>
 #include <base/string_util.h>
 #include <base/stringprintf.h>
+#include <gtest/gtest_prod.h>
 
 namespace chromeos {
 // Manages a process.  Can create the process, attach to an existing
@@ -158,6 +159,8 @@ class ProcessImpl : public Process {
   bool PopulatePipeMap();
 
  private:
+  FRIEND_TEST(ProcessTest, ResetPidByFile);
+
   // Pid of currently managed process or 0 if no currently managed
   // process.  pid must not be modified except by calling
   // UpdatePid(new_pid).
